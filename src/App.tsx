@@ -8,6 +8,7 @@ import { EmptyState } from './components/EmptyState';
 import { BlogPostDetail } from './components/BlogPostDetail';
 
 export function App() {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -23,7 +24,7 @@ export function App() {
   const fetchBlogs = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/blog-posts', {
+      const response = await axios.get(`${apiUrl}/blog-posts`, {
         params: { page: currentPage, search: searchQuery },
       });
 
